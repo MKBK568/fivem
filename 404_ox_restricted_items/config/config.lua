@@ -1,25 +1,26 @@
+-- Configuration file for 404_ox_restricted_items
 Config = {}
 
-
+-- List of items that cannot be discarded, transferred, given or traded
 Config.RestrictedItems = {
     -- ['ticket'] = true,
     -- ['special_card'] = true
 }
 
-
+-- Enable or disable debug mode
 Config.Debug = true
 
-
+-- Default language setting
 Config.Language = 'en'
 
-
+-- Debug print function to display messages when debug mode is enabled
 function DebugPrint(message)
     if Config.Debug then
         print('^3[404_ox_restricted_items]^0: ' .. message)
     end
 end
 
--- Multi-language support
+-- Multi-language support for the script
 Config.Locales = {
     ['en'] = {
         title = 'Item Restricted',
@@ -71,12 +72,12 @@ Config.Locales = {
     }
 }
 
--- Helper function to get the current locale
+-- Helper function to get the current locale based on Config.Language setting
 function GetLocale()
     return Config.Locales[Config.Language] or Config.Locales['en']
 end
 
--- Notification function
+-- Function to send notifications to players with appropriate localization
 function Notify(source, message)
     local locale = GetLocale()
     TriggerClientEvent('ox_lib:notify', source, {
